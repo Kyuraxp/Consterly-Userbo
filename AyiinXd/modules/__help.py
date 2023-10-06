@@ -22,11 +22,11 @@ from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl.functions.contacts import UnblockRequest
 
 from config import var
-from AyiinXd import Ayiin, CMD_HELP, bot, ch
-from AyiinXd.ayiin import ayiin_cmd, eod, eor
+from TerlyXd import Csterly, CMD_HELP, bot, ch
+from TerlyXd.sterly import csterly_cmd, eod, eor
 
 
-@ayiin_cmd(pattern="help(?: |$)(.*)")
+@csterly_cmd(pattern="help(?: |$)(.*)")
 async def helpyins(event):
     if event.fwd_from:
         return
@@ -40,14 +40,14 @@ async def helpyins(event):
                 f"**Modul {args} Tidak diketahui**, **Silahkan Ketik {var.CMD_HANDLER}help untuk melihat modul.**"
             )
     else:
-        AyiinUBOT = await bot.get_me()
-        BOT_USERNAME = AyiinUBOT.username
+        CsterlyUBOT = await bot.get_me()
+        BOT_USERNAME = CsterlyUBOT.username
         if BOT_USERNAME is not None:
             chat = "@Botfather"
             try:
                 results = await event.client.inline_query(
                     BOT_USERNAME,
-                    "@AyiinChats"
+                    "@MutualanConsterly"
                 )
                 await results[0].click(
                     event.chat_id, reply_to=event.reply_to_msg_id, hide_via=True

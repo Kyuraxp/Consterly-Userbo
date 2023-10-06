@@ -16,11 +16,11 @@ from traceback import format_exc
 
 from telethon import events
 
-from AyiinXd import Ayiin, CMD_LIST
+from TerlyXd import Csterly, CMD_LIST
 
 
 
-def ayiin_cmd(pattern=None, command=None, **args):
+def csterly_cmd(pattern=None, command=None, **args):
     from config import var, DEVS
 
     args["func"] = lambda e: e.via_bot_id is None
@@ -118,8 +118,8 @@ def command(**args):
                 return
 
         if allow_edited_updates:
-            Ayiin.add_event_handler(func, events.MessageEdited(**args))
-        Ayiin.add_event_handler(func, events.NewMessage(**args))
+            Csterly.add_event_handler(func, events.MessageEdited(**args))
+        Csterly.add_event_handler(func, events.NewMessage(**args))
 
     return decorator
 
@@ -205,7 +205,7 @@ def register(**args):
                 if not disable_errors:
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
-                    text = "**✘ AYIIN-USERBOT ERROR REPORT ✘**\n\n"
+                    text = "**✘ CONSTERLY-USERBOT ERROR REPORT ✘**\n\n"
                     link = "[Group Support](https://t.me/AyiinChats)"
                     text += "Jika mau, Anda bisa melaporkan error ini, "
                     text += f"Cukup forward saja pesan ini ke {link}.\n\n"
@@ -245,10 +245,10 @@ def register(**args):
                     with open("error.log", "w+") as file:
                         file.write(ftext)
 
-        if Ayiin:
+        if Csterly:
             if not disable_edited:
-                Ayiin.add_event_handler(wrapper, events.MessageEdited(**args))
-            Ayiin.add_event_handler(wrapper, events.NewMessage(**args))
+                Csterly.add_event_handler(wrapper, events.MessageEdited(**args))
+            Csterly.add_event_handler(wrapper, events.NewMessage(**args))
         return wrapper
 
     return decorator

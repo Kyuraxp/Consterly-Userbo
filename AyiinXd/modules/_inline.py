@@ -6,18 +6,18 @@ from telethon.sync import custom, events
 from telethon.tl.types import InputWebDocument
 
 from config import var
-from AyiinXd import Ayiin, CMD_HELP, bot, ibuild_keyboard, paginate_help
-from AyiinXd.ayiin import HOSTED_ON
+from TerlyXd import Csterly, CMD_HELP, bot, ibuild_keyboard, paginate_help
+from TerlyXd.sterly import HOSTED_ON
 
 
 BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\<buttonurl:(?:/{0,2})(.+?)(:same)?\>)")
 main_help_button = [
     [
         Button.inline("•• Pʟᴜɢɪɴ ••", data="reopen"),
-        Button.inline("Mᴇɴᴜ Vᴄ ••", data="inline_yins"),
+        Button.inline("Mᴇɴᴜ Vᴄ ••", data="inline_trly"),
     ],
     [
-        Button.inline("⚙️ Aʟᴀᴛ Pᴇᴍɪʟɪᴋ", data="yins_langs"),
+        Button.inline("⚙️ Aʟᴀᴛ Pᴇᴍɪʟɪᴋ", data="trly_langs"),
         Button.url("Pᴇɴɢᴀᴛᴜʀᴀɴ ⚙️", url=f"t.me/{var.BOT_USERNAME}?start="),
     ],
     [Button.inline("•• Kᴇᴍʙᴀʟɪ ••", data="close")],
@@ -38,33 +38,33 @@ async def inline_handler(event):
     builder = event.builder
     result = None
     query = event.text
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     if event.query.user_id == user.id and query.startswith(
-            "@AyiinChats"):
+            "@MutualanConsterly"):
         buttons = paginate_help(0, CMD_HELP, "helpme")
         result = await event.builder.photo(
             file=logoyins,
             link_preview=False,
-            text=f"**✨ ᴀʏɪɪɴ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n⍟ **ᴅᴇᴘʟᴏʏ :** •[{HOSTED_ON}]•\n⍟ **ᴏᴡɴᴇʀ :** {user.first_name}\n⍟ **ᴊᴜᴍʟᴀʜ :** {len(CMD_HELP)} **Modules**",
+            text=f"**✨ ᴄᴏɴsᴛᴇʀʟʏ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n⍟ **ᴅᴇᴘʟᴏʏ :** •[{HOSTED_ON}]•\n⍟ **ᴏᴡɴᴇʀ :** {user.first_name}\n⍟ **ᴊᴜᴍʟᴀʜ :** {len(CMD_HELP)} **Modules**",
             buttons=main_help_button,
         )
     elif query.startswith("repo"):
         result = builder.article(
             title="Repository",
-            description="Repository Ayiin - Userbot",
-            url="https://t.me/AyiinChats",
+            description="Repository Consterly - Userbot",
+            url="https://t.me/MutualanConsterly",
             thumb=InputWebDocument(
                 var.INLINE_PIC,
                 0,
                 "image/jpeg",
                 []),
-            text="**Ayiin-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧  **ʀᴇᴘᴏ :** [AyiinXd](https://t.me/AyiinXd)\n✧ **sᴜᴘᴘᴏʀᴛ :** @AyiinChats\n✧ **ʀᴇᴘᴏsɪᴛᴏʀʏ :** [Ayiin-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
+            text="**Consterly-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧  **ʀᴇᴘᴏ :** [AyiinXd](https://t.me/AyiinXd)\n✧ **sᴜᴘᴘᴏʀᴛ :** @MutualanConsterly\n✧ **ʀᴇᴘᴏsɪᴛᴏʀʏ :** [Consterly-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
             buttons=[
                 [
                     custom.Button.url(
                         "ɢʀᴏᴜᴘ",
-                        "https://t.me/AyiinChats"),
+                        "https://t.me/MutualanConsterly"),
                     custom.Button.url(
                         "ʀᴇᴘᴏ",
                         "https://github.com/AyiinXd/Ayiin-Userbot"),
@@ -106,20 +106,20 @@ async def inline_handler(event):
         )
     else:
         result = builder.article(
-            title="✨ ᴀʏɪɪɴ-ᴜsᴇʀʙᴏᴛ ✨",
-            description="Ayiin - Userbot | Telethon",
-            url="https://t.me/AyiinChannel",
+            title="✨ ᴄᴏɴsᴛᴇʀʟʏ-ᴜsᴇʀʙᴏᴛ ✨",
+            description="Consterly - Userbot | Telethon",
+            url="https://t.me/consterlyprojects",
             thumb=InputWebDocument(
                 var.INLINE_PIC,
                 0,
                 "image/jpeg",
                 []),
-            text=f"**Ayiin-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴀssɪsᴛᴀɴᴛ:** {var.BOT_USERNAME}\n➖➖➖➖➖➖➖➖➖➖\n**ᴜᴘᴅᴀᴛᴇs :** @AyiinChannel\n➖➖➖➖➖➖➖➖➖➖",
+            text=f"**Consterly-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴀssɪsᴛᴀɴᴛ:** {var.BOT_USERNAME}\n➖➖➖➖➖➖➖➖➖➖\n**ᴜᴘᴅᴀᴛᴇs :** @consterlyprojects\n➖➖➖➖➖➖➖➖➖➖",
             buttons=[
                 [
                     custom.Button.url(
                         "ɢʀᴏᴜᴘ",
-                        "https://t.me/AyiinChats"),
+                        "https://t.me/MutualanConsterly"),
                     custom.Button.url(
                         "ʀᴇᴘᴏ",
                         "https://github.com/AyiinXd/Ayiin-Userbot"),

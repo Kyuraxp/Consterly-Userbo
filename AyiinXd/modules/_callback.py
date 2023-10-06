@@ -6,8 +6,8 @@ from telethon.sync import custom, events
 from telethon.tl.types import InputWebDocument
 
 from config import var
-from AyiinXd import Ayiin, CMD_HELP, bot, ibuild_keyboard, paginate_help
-from AyiinXd.ayiin import HOSTED_ON
+from TerlyXd import Csterly, CMD_HELP, bot, ibuild_keyboard, paginate_help
+from TerlyXd.sterly import HOSTED_ON
 
 
 
@@ -24,14 +24,14 @@ logoyins = random.choice(
 )
 main_help_button = [
     [
-        Button.inline("•• Pʟᴜɢɪɴ ••", data="reopen"),
-        Button.inline("Mᴇɴᴜ Vᴄ ••", data="inline_yins"),
+        Button.inline("Pʟᴜɢɪɴ", data="reopen"),
+        Button.inline("Mᴇɴᴜ Vᴄ", data="inline_trly"),
     ],
     [
-        Button.inline("⚙️ Aʟᴀᴛ Pᴇᴍɪʟɪᴋ", data="yins_langs"),
+        Button.inline("⚙️ Aʟᴀᴛ Pᴇᴍɪʟɪᴋ", data="trly_langs"),
         Button.url("Pᴇɴɢᴀᴛᴜʀᴀɴ ⚙️", url=f"t.me/{var.BOT_USERNAME}?start="),
     ],
-    [Button.inline("•• Kᴇᴍʙᴀʟɪ ••", data="close")],
+    [Button.inline("Kᴇᴍʙᴀʟɪ", data="close")],
 ]
 
 
@@ -41,7 +41,7 @@ main_help_button = [
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:
@@ -63,34 +63,34 @@ async def inline_handler(event):
     builder = event.builder
     result = None
     query = event.text
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     botusername = (await event.client.get_me()).username
     if event.query.user_id == uid and query.startswith(
-            "@AyiinChats"):
+            "@MutualanConsterly"):
         buttons = paginate_help(0, dugmeler, "helpme")
         result = await event.builder.photo(
             file=logoyins,
             link_preview=False,
-            text=f"**✨ ᴀʏɪɪɴ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n⍟ **ᴅᴇᴘʟᴏʏ :** •[{HOSTED_ON}]•\n⍟ **ᴏᴡɴᴇʀ :** {user.first_name}\n⍟ **ᴊᴜᴍʟᴀʜ :** {len(dugmeler)} **Modules**",
+            text=f"**✨ ᴄᴏɴsᴛᴇʀʟʏ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n⍟ **ᴅᴇᴘʟᴏʏ :** •[{HOSTED_ON}]•\n⍟ **ᴏᴡɴᴇʀ :** {user.first_name}\n⍟ **ᴊᴜᴍʟᴀʜ :** {len(dugmeler)} **Modules**",
             buttons=main_help_button,
         )
     elif query.startswith("repo"):
         result = builder.article(
             title="Repository",
-            description="Repository Ayiin - Userbot",
-            url="https://t.me/AyiinChats",
+            description="Repository ᴄᴏɴsᴛᴇʀʟʏ - Userbot",
+            url="https://t.me/MutualanConsterly",
             thumb=InputWebDocument(
                 var.INLINE_PIC,
                 0,
                 "image/jpeg",
                 []),
-            text="**Ayiin-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧  **ʀᴇᴘᴏ :** [AyiinXd](https://t.me/AyiinXd)\n✧ **sᴜᴘᴘᴏʀᴛ :** @AyiinChats\n✧ **ʀᴇᴘᴏsɪᴛᴏʀʏ :** [Ayiin-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
+            text="**Consterly-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧  **ʀᴇᴘᴏ :** [AyiinXd](https://t.me/AyiinXd)\n✧ **sᴜᴘᴘᴏʀᴛ :** @MutualanConsterly\n✧ **ʀᴇᴘᴏsɪᴛᴏʀʏ :** [Consterly-Userbot](https://github.com/AyiinXd/Ayiin-Userbot)\n➖➖➖➖➖➖➖➖➖➖",
             buttons=[
                 [
                     custom.Button.url(
                         "ɢʀᴏᴜᴘ",
-                        "https://t.me/AyiinChats"),
+                        "https://t.me/MutualanConsterly"),
                     custom.Button.url(
                         "ʀᴇᴘᴏ",
                         "https://github.com/AyiinXd/Ayiin-Userbot"),
@@ -132,20 +132,20 @@ async def inline_handler(event):
         )
     else:
         result = builder.article(
-            title="✨ ᴀʏɪɪɴ-ᴜsᴇʀʙᴏᴛ ✨",
-            description="Ayiin - Userbot | Telethon",
+            title="✨ ᴄᴏɴsᴛᴇʀʟʏ-ᴜsᴇʀʙᴏᴛ ✨",
+            description="Consterly - Userbot | Telethon",
             url="https://t.me/AyiinChannel",
             thumb=InputWebDocument(
                 var.INLINE_PIC,
                 0,
                 "image/jpeg",
                 []),
-            text=f"**Ayiin-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴀssɪsᴛᴀɴᴛ:** {botusername}\n➖➖➖➖➖➖➖➖➖➖\n**ᴜᴘᴅᴀᴛᴇs :** @AyiinChannel\n➖➖➖➖➖➖➖➖➖➖",
+            text=f"**Consterly-Userbot**\n➖➖➖➖➖➖➖➖➖➖\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴀssɪsᴛᴀɴᴛ:** {botusername}\n➖➖➖➖➖➖➖➖➖➖\n**ᴜᴘᴅᴀᴛᴇs :** @consterlyprojects\n➖➖➖➖➖➖➖➖➖➖",
             buttons=[
                 [
                     custom.Button.url(
                         "ɢʀᴏᴜᴘ",
-                        "https://t.me/AyiinChats"),
+                        "https://t.me/MutualanConsterly"),
                     custom.Button.url(
                         "ʀᴇᴘᴏ",
                         "https://github.com/AyiinXd/Ayiin-Userbot"),
@@ -163,7 +163,7 @@ async def inline_handler(event):
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:
@@ -184,7 +184,7 @@ async def on_plug_in_callback_query_handler(event):
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:  # @Kyy-Userbot
@@ -200,13 +200,13 @@ async def on_plug_in_callback_query_handler(event):
     )
 )
 async def gback_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:  # @Ayiin-Userbot
         # https://t.me/TelethonChat/115200
         text = (
-            f"**✨ ᴀʏɪɪɴ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴊᴜᴍʟᴀʜ :** {len(dugmeler)} **Modules**")
+            f"**✨ ᴄᴏɴsᴛᴇʀʟʏ-ᴜsᴇʀʙᴏᴛ ɪɴʟɪɴᴇ ᴍᴇɴᴜ ✨**\n\n✧ **ᴏᴡɴᴇʀ :** [{user.first_name}](tg://user?id={user.id})\n✧ **ᴊᴜᴍʟᴀʜ :** {len(dugmeler)} **Modules**")
         await event.edit(
             text,
             file=logoyins,
@@ -214,9 +214,9 @@ async def gback_handler(event):
             buttons=main_help_button)
 
 
-@bot.on(events.CallbackQuery(data=b"inline_yins"))
+@bot.on(events.CallbackQuery(data=b"inline_trly"))
 async def about(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:
@@ -243,7 +243,7 @@ async def about(event):
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     cmd = var.CMD_HANDLER
@@ -280,7 +280,7 @@ async def on_plug_in_callback_query_handler(event):
             text,
             file=logoyins,
             link_preview=True,
-            buttons=[Button.inline("ʙᴀᴄᴋ", data="inline_yins")])
+            buttons=[Button.inline("ʙᴀᴄᴋ", data="inline_trly")])
     else:
         reply_pop_up_alert = f"❌ DISCLAIMER ❌\n\nAnda Tidak Mempunyai Hak Untuk Menekan Tombol Button Ini"
         await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -322,7 +322,7 @@ async def on_plug_in_callback_query_handler(event):
             text,
             file=logoyins,
             link_preview=True,
-            buttons=[Button.inline("ʙᴀᴄᴋ", data="inline_yins")])
+            buttons=[Button.inline("ʙᴀᴄᴋ", data="inline_trly")])
     else:
         reply_pop_up_alert = f"❌ DISCLAIMER ❌\n\nAnda Tidak Mempunyai Hak Untuk Menekan Tombol Button Ini"
         await event.answer(reply_pop_up_alert, cache_time=0, alert=True)
@@ -330,11 +330,11 @@ async def on_plug_in_callback_query_handler(event):
 
 @bot.on(
     events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-        data=re.compile(rb"yins_langs")
+        data=re.compile(rb"trly_langs")
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     cmd = var.CMD_HANDLER
@@ -371,7 +371,7 @@ async def close(event):
     )
 )
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     if event.query.user_id == uid or event.query.user_id in var.SUDO_USERS:
@@ -386,7 +386,7 @@ async def on_plug_in_callback_query_handler(event):
 
 @bot.on(events.callbackquery.CallbackQuery(data=re.compile(b"ub_modul_(.*)")))
 async def on_plug_in_callback_query_handler(event):
-    user = await Ayiin.get_me()
+    user = await Csterly.get_me()
     uid = user.id
     owner = user.first_name
     cmd = var.CMD_HANDLER

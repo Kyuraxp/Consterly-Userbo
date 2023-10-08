@@ -35,10 +35,10 @@ from telethon.tl.types import (
     MessageMediaPhoto,
 )
 
-from AyiinXd import CMD_HELP
-from AyiinXd.events import register
-from AyiinXd.ayiin import (
-    AyiinChanger,
+from TerlyXd import CMD_HELP
+from TerlyXd.events import register
+from TerlyXd.sterly import (
+    CsterlyChanger,
     _format,
     eod,
     eor,
@@ -47,7 +47,7 @@ from AyiinXd.ayiin import (
     ayiin_handler,
     media_type,
 )
-from AyiinXd.database.muted import (
+from TerlyXd.database.muted import (
     add_mute,
     add_gmute,
     cek_mute,
@@ -88,7 +88,7 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 # ================================================
 
 
-@ayiin_cmd(pattern="setgpic( -s| -d)$", group_only=True)
+@csterly_cmd(pattern="setgpic( -s| -d)$", group_only=True)
 @register(pattern=r"^\.csetgpic( -s| -d)$", sudo=True)
 async def set_group_photo(event):
     "For changing Group dp"
@@ -129,7 +129,7 @@ async def set_group_photo(event):
         await eor(event, "**Foto Profil Grup Berhasil dihapus.**", time=30)
 
 
-@ayiin_cmd(pattern="promote(?:\\s|$)([\\s\\S]*)", group_only=True)
+@csterly_cmd(pattern="promote(?:\\s|$)([\\s\\S]*)", group_only=True)
 @register(pattern=r"^\.cpromote(?:\s|$)([\s\S]*)", sudo=True)
 async def promote(event):
     new_rights = ChatAdminRights(
@@ -154,7 +154,7 @@ async def promote(event):
     await eor(event, "`Berhasil Dipromosikan!`", time=30)
 
 
-@ayiin_cmd(pattern="demote(?:\\s|$)([\\s\\S]*)", group_only=True)
+@csterly_cmd(pattern="demote(?:\\s|$)([\\s\\S]*)", group_only=True)
 @register(pattern=r"^\.cdemote(?:\s|$)([\s\S]*)", sudo=True)
 async def demote(event):
     "To demote a person in group"
@@ -179,7 +179,7 @@ async def demote(event):
     await eor(event, "`Berhasil Diturunkan!`", time=30)
 
 
-@ayiin_cmd(pattern="ban(?:\\s|$)([\\s\\S]*)", group_only=True)
+@csterly_cmd(pattern="ban(?:\\s|$)([\\s\\S]*)", group_only=True)
 @register(pattern=r"^\.cban(?:\s|$)([\s\S]*)", sudo=True)
 async def ban(bon):
     me = await bon.client.get_me()
@@ -224,7 +224,7 @@ async def ban(bon):
         )
 
 
-@ayiin_cmd(pattern="unban(?:\\s|$)([\\s\\S]*)", group_only=True)
+@csterly_cmd(pattern="unban(?:\\s|$)([\\s\\S]*)", group_only=True)
 @register(pattern=r"^\.cunban(?:\s|$)([\s\S]*)", sudo=True)
 async def nothanos(unbon):
     chat = await unbon.get_chat()
@@ -244,7 +244,7 @@ async def nothanos(unbon):
         await eor(unbon, "`Sepertinya Terjadi KESALAHAN!`", time=10)
 
 
-@ayiin_cmd(pattern="mute(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="mute(?: |$)(.*)", group_only=True)
 @register(pattern=r"^\.cmute(?: |$)(.*)", sudo=True)
 async def spider(spdr):
     chat = await spdr.get_chat()
@@ -300,7 +300,7 @@ async def spider(spdr):
         return await eor(spdr, "**Terjadi KESALAHAN!**", time=10)
 
 
-@ayiin_cmd(pattern="unmute(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="unmute(?: |$)(.*)", group_only=True)
 @register(pattern=r"^\.cunmute(?: |$)(.*)", sudo=True)
 async def unmoot(unmot):
     self_user = await unmot.client.get_me()
@@ -357,7 +357,7 @@ async def muter(moot):
                 await moot.delete()
 
 
-@ayiin_cmd(pattern="ungmute(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="ungmute(?: |$)(.*)", group_only=True)
 @register(pattern=r"^\.cungmute(?: |$)(.*)", sudo=True)
 async def ungmoot(un_gmute):
     me = await un_gmute.client.get_me()
@@ -381,7 +381,7 @@ async def ungmoot(un_gmute):
         await ayiin.edit("**BERHASIL! Pengguna Sudah Tidak Dibisukan**", time=10)
 
 
-@ayiin_cmd(pattern="gmute(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="gmute(?: |$)(.*)", group_only=True)
 @register(pattern=r"^\.cgmute(?: |$)(.*)", sudo=True)
 async def gspider(gspdr):
     try:
@@ -434,7 +434,7 @@ async def gspider(gspdr):
         await eor(ayiin, f'{format_exc()}')
 
 
-@ayiin_cmd(pattern="zombies(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="zombies(?: |$)(.*)", group_only=True)
 async def rm_deletedacc(show):
     con = show.pattern_match.group(1).lower()
     del_u = 0
@@ -483,7 +483,7 @@ async def rm_deletedacc(show):
         )
 
 
-@ayiin_cmd(pattern="admins$", group_only=True)
+@csterly_cmd(pattern="admins$", group_only=True)
 async def get_admin(show):
     info = await show.client.get_entity(show.chat_id)
     title = info.title or "Grup Ini"
@@ -502,7 +502,7 @@ async def get_admin(show):
     await show.edit(mentions, parse_mode="html")
 
 
-@ayiin_cmd(pattern="pin( loud|$)")
+@csterly_cmd(pattern="pin( loud|$)")
 @register(pattern=r"^\.cpin( loud|$)", sudo=True)
 async def pin(event):
     to_pin = event.reply_to_msg_id
@@ -519,7 +519,7 @@ async def pin(event):
     await eor(event, "`Pesan berhasil disematkan!`")
 
 
-@ayiin_cmd(pattern="unpin( all|$)")
+@csterly_cmd(pattern="unpin( all|$)")
 @register(pattern=r"^\.cunpin( all|$)", sudo=True)
 async def pin(event):
     to_unpin = event.reply_to_msg_id
@@ -549,7 +549,7 @@ async def pin(event):
         return await eor(event, "**KESALAHAN : **`{}`".format(e), time=10)
 
 
-@ayiin_cmd(pattern="kick(?: |$)(.*)", group_only=True)
+@csterly_cmd(pattern="kick(?: |$)(.*)", group_only=True)
 @register(pattern=r"^\.ckick(?: |$)(.*)", sudo=True)
 async def kick(usr):
     chat = await usr.get_chat()
@@ -577,7 +577,7 @@ async def kick(usr):
         )
 
 
-@ayiin_cmd(pattern=r"undlt( -u)?(?: |$)(\d*)?")
+@csterly_cmd(pattern=r"undlt( -u)?(?: |$)(\d*)?")
 async def _iundlt(event):
     catevent = await eor(event, "`Mencari tindakan terbaru...`")
     flag = event.pattern_match.group(1)

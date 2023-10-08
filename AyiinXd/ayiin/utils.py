@@ -21,8 +21,8 @@ from telethon.tl.types import ChatPhotoEmpty, InputChatUploadedPhoto, ChatAdminR
 from telethon.utils import get_peer_id
 
 from config import var
-from AyiinXd import (
-    Ayiin,
+from TerlyXd import (
+    Csterly,
     CMD_HELP,
     LOGS,
 )
@@ -84,40 +84,40 @@ async def autopilot():
 
 async def autobot():
     try:
-        await Ayiin.start()
+        await Csterly.start()
         await asyncio.sleep(15)
-        await Ayiin.send_message(
+        await Csterly.send_message(
             var.BOTLOG_CHATID,
             "**MOHON TUNGGU SEBENTAR, SEDANG MEMBUAT ASSISTANT BOT ANDA DI @BotFather**"
         )
         LOGS.info("MOHON TUNGGU SEBENTAR, SEDANG MEMBUAT ASSISTANT BOT ANDA.")
-        who = await Ayiin.get_me()
+        who = await Csterly.get_me()
         name = f"{who.first_name} Assistant Bot"
         if who.username:
             username = f"{who.username}_bot"
         else:
             username = f"Ayiin{(str(who.id))[5:]}bot"
         bf = "@BotFather"
-        await Ayiin(UnblockRequest(bf))
-        await Ayiin.send_message(bf, "/cancel")
+        await Csterly(UnblockRequest(bf))
+        await Csterly.send_message(bf, "/cancel")
         await asyncio.sleep(1)
-        await Ayiin.send_message(bf, "/start")
+        await Csterly.send_message(bf, "/start")
         await asyncio.sleep(1)
-        await Ayiin.send_message(bf, "/newbot")
+        await Csterly.send_message(bf, "/newbot")
         await asyncio.sleep(1)
-        isdone = (await Ayiin.get_messages(bf, limit=1))[0].text
+        isdone = (await Csterly.get_messages(bf, limit=1))[0].text
         if isdone.startswith("That I cannot do."):
             LOGS.info(
                 "Silakan buat Bot dari @BotFather dan tambahkan tokennya di var BOT_TOKEN"
             )
             sys.exit(1)
-        await Ayiin.send_message(bf, name)
+        await Csterly.send_message(bf, name)
         await asyncio.sleep(1)
-        isdone = (await Ayiin.get_messages(bf, limit=1))[0].text
+        isdone = (await Csterly.get_messages(bf, limit=1))[0].text
         if not isdone.startswith("Good."):
-            await Ayiin.send_message(bf, "My Assistant Bot")
+            await Csterly.send_message(bf, "My Assistant Bot")
             await asyncio.sleep(1)
-            isdone = (await Ayiin.get_messages(bf, limit=1))[0].text
+            isdone = (await Csterly.get_messages(bf, limit=1))[0].text
             if not isdone.startswith("Good."):
                 LOGS.info(
                     "Silakan buat Bot dari @BotFather dan tambahkan tokennya di var BOT_TOKEN"
@@ -129,67 +129,67 @@ async def autobot():
                 "AyiinXd/resources/logo.jpg",
             ]
         )
-        await Ayiin.send_message(bf, username)
+        await Csterly.send_message(bf, username)
         await asyncio.sleep(3)
-        isdone = (await Ayiin.get_messages(bf, limit=1))[0].text
-        await Ayiin.send_read_acknowledge("botfather")
+        isdone = (await Csterly.get_messages(bf, limit=1))[0].text
+        await Csterly.send_read_acknowledge("botfather")
         await asyncio.sleep(3)
         if isdone.startswith("Sorry,"):
             ran = randint(1, 100)
-            username = f"Ayiin{(str(who.id))[6:]}{str(ran)}bot"
-            await Ayiin.send_message(bf, username)
+            username = f"Csterly{(str(who.id))[6:]}{str(ran)}bot"
+            await Csterly.send_message(bf, username)
             await asyncio.sleep(3)
-            nowdone = (await Ayiin.get_messages(bf, limit=1))[0].text
+            nowdone = (await Csterly.get_messages(bf, limit=1))[0].text
             if nowdone.startswith("Done!"):
                 token = nowdone.split("`")[1]
-                await Ayiin.send_message(bf, "/setinline")
+                await Csterly.send_message(bf, "/setinline")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, f"@{username}")
+                await Csterly.send_message(bf, f"@{username}")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, "Search")
+                await Csterly.send_message(bf, "Search")
                 await asyncio.sleep(3)
-                await Ayiin.send_message(bf, "/setuserpic")
+                await Csterly.send_message(bf, "/setuserpic")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, f"@{username}")
+                await Csterly.send_message(bf, f"@{username}")
                 await asyncio.sleep(1)
-                await Ayiin.send_file(bf, filogo)
+                await Csterly.send_file(bf, filogo)
                 await asyncio.sleep(3)
-                await Ayiin.send_message(bf, "/setabouttext")
+                await Csterly.send_message(bf, "/setabouttext")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, f"@{username}")
+                await Csterly.send_message(bf, f"@{username}")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, f"Managed With ✨ By {who.first_name}")
+                await Csterly.send_message(bf, f"Managed With ✨ By {who.first_name}")
                 await asyncio.sleep(3)
-                await Ayiin.send_message(bf, "/setdescription")
+                await Csterly.send_message(bf, "/setdescription")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(bf, f"@{username}")
+                await Csterly.send_message(bf, f"@{username}")
                 await asyncio.sleep(1)
-                await Ayiin.send_message(
+                await Csterly.send_message(
                     bf, f"✨ Owner ~ {who.first_name} ✨\n\n✨ Powered By ~ @AyiinChannel ✨"
                 )
-                await Ayiin.send_message(
+                await Csterly.send_message(
                     var.BOTLOG_CHATID,
                     f"**BERHASIL MEMBUAT ASSISTANT BOT ANDA DENGAN USERNAME @{username}**",
                 )
                 LOGS.info(
                     f"BERHASIL MEMBUAT ASSISTANT BOT ANDA DENGAN USERNAME @{username}")
                 try:
-                    await Ayiin(InviteToChannelRequest(int(var.BOTLOG_CHATID), [username]))
+                    await Csterly(InviteToChannelRequest(int(var.BOTLOG_CHATID), [username]))
                     await asyncio.sleep(3)
                 except BaseException:
                     pass
                 try:
-                    await Ayiin(EditAdminRequest(var.BOTLOG_CHATID, username, new_rights, "Assɪsᴛᴀɴᴛ Aʏɪɪɴ"))
+                    await Csterly(EditAdminRequest(var.BOTLOG_CHATID, username, new_rights, "Assɪsᴛᴀɴᴛ Aʏɪɪɴ"))
                     await asyncio.sleep(3)
                 except BaseException:
                     pass
-                await Ayiin.send_message(
+                await Csterly.send_message(
                     var.BOTLOG_CHATID,
                     "**SEDANG MERESTART USERBOT HARAP TUNGGU.**",
                 )
                 await set_var_value("BOT_TOKEN", token)
                 await set_var_value("BOT_USERNAME", f"{username}")
-                os.execvp(sys.executable, [sys.executable, "-m", "AyiinXd"])
+                os.execvp(sys.executable, [sys.executable, "-m", "TerlyXd"])
             else:
                 LOGS.info(
                     "Silakan Hapus Beberapa Bot Telegram Anda di @Botfather atau Set Var BOT_TOKEN dengan token bot"
@@ -197,32 +197,32 @@ async def autobot():
                 sys.exit(1)
         elif isdone.startswith("Done!"):
             token = isdone.split("`")[1]
-            await Ayiin.send_message(bf, "/setinline")
+            await Csterly.send_message(bf, "/setinline")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, f"@{username}")
+            await Csterly.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, "Search")
+            await Csterly.send_message(bf, "Search")
             await asyncio.sleep(3)
-            await Ayiin.send_message(bf, "/setuserpic")
+            await Csterly.send_message(bf, "/setuserpic")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, f"@{username}")
+            await Csterly.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
-            await Ayiin.send_file(bf, filogo)
+            await Csterly.send_file(bf, filogo)
             await asyncio.sleep(3)
-            await Ayiin.send_message(bf, "/setabouttext")
+            await Csterly.send_message(bf, "/setabouttext")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, f"@{username}")
+            await Csterly.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, f"Managed With ✨ By {who.first_name}")
+            await Csterly.send_message(bf, f"Managed With ✨ By {who.first_name}")
             await asyncio.sleep(3)
-            await Ayiin.send_message(bf, "/setdescription")
+            await Csterly.send_message(bf, "/setdescription")
             await asyncio.sleep(1)
-            await Ayiin.send_message(bf, f"@{username}")
+            await Csterly.send_message(bf, f"@{username}")
             await asyncio.sleep(1)
-            await Ayiin.send_message(
+            await Csterly.send_message(
                 bf, f"✨ Owner ~ {who.first_name} ✨\n\n✨ Powered By ~ @AyiinChannel ✨"
             )
-            await Ayiin.send_message(
+            await Csterly.send_message(
                 var.BOTLOG_CHATID,
                 f"**BERHASIL MEMBUAT ASSISTANT BOT ANDA DENGAN USERNAME @{username}**",
             )
@@ -230,22 +230,22 @@ async def autobot():
                 f"BERHASIL MEMBUAT ASSISTANT BOT DENGAN USERNAME @{username}"
             )
             try:
-                await Ayiin(InviteToChannelRequest(int(var.BOTLOG_CHATID), [username]))
+                await Csterly(InviteToChannelRequest(int(var.BOTLOG_CHATID), [username]))
                 await asyncio.sleep(3)
             except BaseException:
                 pass
             try:
-                await Ayiin(EditAdminRequest(var.BOTLOG_CHATID, username, new_rights, "Assɪsᴛᴀɴᴛ Aʏɪɪɴ"))
+                await Csterly(EditAdminRequest(var.BOTLOG_CHATID, username, new_rights, "Assɪsᴛᴀɴᴛ Aʏɪɪɴ"))
                 await asyncio.sleep(3)
             except BaseException:
                 pass
-            await Ayiin.send_message(
+            await Csterly.send_message(
                 var.BOTLOG_CHATID,
                 "**SEDANG MERESTART USERBOT HARAP TUNGGU.**",
             )
             await set_var_value("BOT_TOKEN", token)
             await set_var_value("BOT_USERNAME", f"{username}")
-            os.execvp(sys.executable, [sys.executable, "-m", "AyiinXd"])
+            os.execvp(sys.executable, [sys.executable, "-m", "TerlyXd"])
         else:
             LOGS.info(
                 "Silakan Hapus Beberapa Bot Telegram Anda di @Botfather atau Set Var BOT_TOKEN dengan token bot"
@@ -259,25 +259,25 @@ def load_module(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        path = Path(f"AyiinXd/modules/{shortname}.py")
-        name = "AyiinXd.modules.{}".format(shortname)
+        path = Path(f"TerlyXd/modules/{shortname}.py")
+        name = "TerlyXd.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         LOGS.info("Successfully imported " + shortname)
     else:
 
-        path = Path(f"AyiinXd/modules/{shortname}.py")
-        name = "AyiinXd.modules.{}".format(shortname)
+        path = Path(f"TerlyXd/modules/{shortname}.py")
+        name = "TerlyXd.modules.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.Ayiin = Ayiin
+        mod.Csterly = Csterly
         mod.LOGS = LOGS
         mod.CMD_HELP = CMD_HELP
         mod.logger = logging.getLogger(shortname)
         spec.loader.exec_module(mod)
         # for imports
-        sys.modules["AyiinXd.modules." + shortname] = mod
+        sys.modules["TerlyXd.modules." + shortname] = mod
         LOGS.info("Successfully imported " + shortname)
 
 
@@ -285,21 +285,21 @@ def start_assistant(shortname):
     if shortname.startswith("__"):
         pass
     elif shortname.endswith("_"):
-        path = Path(f"AyiinXd/modules/assistant/{shortname}.py")
-        name = "AyiinXd.modules.assistant.{}".format(shortname)
+        path = Path(f"TerlyXd/modules/assistant/{shortname}.py")
+        name = "TerlyXd.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
         LOGS.info("Starting Your Assistant Bot.")
         LOGS.info("Assistant Sucessfully imported " + shortname)
     else:
-        path = Path(f"AyiinXd/modules/assistant/{shortname}.py")
-        name = "AyiinXd.modules.assistant.{}".format(shortname)
+        path = Path(f"TerlyXd/modules/assistant/{shortname}.py")
+        name = "TerlyXd.modules.assistant.{}".format(shortname)
         spec = importlib.util.spec_from_file_location(name, path)
         mod = importlib.util.module_from_spec(spec)
-        mod.bot = Ayiin.bot
+        mod.bot = Csterly.bot
         spec.loader.exec_module(mod)
-        sys.modules["AyiinXd.modules.assistant" + shortname] = mod
+        sys.modules["TerlyXd.modules.assistant" + shortname] = mod
         LOGS.info("Assistant Successfully imported" + shortname)
 
 
@@ -307,14 +307,14 @@ def remove_plugin(shortname):
     try:
         try:
             for i in CMD_HELP[shortname]:
-                Ayiin.remove_event_handler(i)
+                Csterly.remove_event_handler(i)
             del CMD_HELP[shortname]
 
         except BaseException:
-            name = f"AyiinXd.modules.{shortname}"
+            name = f"TerlyXd.modules.{shortname}"
 
-            for i in reversed(range(len(Ayiin._event_builders))):
-                ev, cb = Ayiin._event_builders[i]
+            for i in reversed(range(len(Csterly._event_builders))):
+                ev, cb = Csterly._event_builders[i]
                 if cb.__module__ == name:
                     del Ayiin._event_builders[i]
     except BaseException:

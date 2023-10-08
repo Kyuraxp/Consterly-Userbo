@@ -2,7 +2,7 @@
 
 
 import openai
-from AyiinXd import CMD_HELP
+from TerlyXd import CMD_HELP
 from .. import var
 
 openai.api_key = var.OPENAI_API_KEY

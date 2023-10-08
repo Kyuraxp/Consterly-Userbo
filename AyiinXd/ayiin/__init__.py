@@ -17,14 +17,14 @@
 from . import format as _format
 from ._hosting import HOSTED_ON
 from .chrome import chrome, options
-from .decorator import asst_cmd, callback, chataction, ayiin_cmd, ayiin_handler
+from .decorator import asst_cmd, callback, chataction, csterly_cmd, ayiin_handler
 from .events import checking, get_user_from_event
 from .format import parse_pre
 from .google_images_download import googleimagesdownload
 from .toolsyins import eor, eod, _try_delete
 from .progress import CancelProcess, progress
 from .tools import (
-    AyiinChanger,
+    CsterlyChanger,
     bash,
     check_media,
     deEmojify,

@@ -53,8 +53,8 @@ from telethon.tl.types import (
 from yt_dlp import YoutubeDL
 
 from config import var
-from AyiinXd import Ayiin, LOGS
-from AyiinXd.ayiin.format import md_to_text, paste_message
+from TerlyXd import Csterly, LOGS
+from TerlyXd.sterly.format import md_to_text, paste_message
 
 from ._hosting import where_hosted
 from .FastTelethon import download_file as downloadable
@@ -64,7 +64,7 @@ HOSTED = where_hosted()
 logs = logging.getLogger(__name__)
 
 
-def AyiinChanger(xd):
+def CsterlyChanger(xd):
     ayiin = xd
     if ayiin:
         berubah = eval(ayiin)
